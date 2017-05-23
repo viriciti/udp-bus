@@ -16,8 +16,9 @@ class Ivh2BusClient
 		bufferizedMessage = Buffer.from(JSON.stringify messageWithFrom)
 
 		@client.send bufferizedMessage, 0, bufferizedMessage.length, @multicastPort, @multicastAddress, (error, bytes) =>
-			return cb error if error
-
+			if error
+				@client.close()
+				return cb error
 
 	_isMessageFormatCorrect: (message) ->
 		return false if (not message.type or not message.payload)
