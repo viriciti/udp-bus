@@ -13,6 +13,17 @@ describe 'ivh2 bus server', ->
 		it 'must have a multicast port', -> busServer.should.include.keys 'multicastPort'
 		it 'can have a multicast address to bind to [optional]', -> busServer.should.include.keys 'multicastAddress'
 
+
+	describe 'instantiation', ->
+		after ->
+			busServer = null
+
+		it 'should throw an error if no multicastPort is provided', ->
+			(() ->
+				busServer = new Ivh2BusServer
+			).should.throw(Error)
+
+
 	describe 'create', ->
 		it 'should emit the event `connected` when the server is listening', (done) ->
 			busServer = new Ivh2BusServer { multicastPort: 10002 }

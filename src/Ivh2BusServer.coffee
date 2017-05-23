@@ -5,6 +5,8 @@ class Ivh2BusServer extends EventEmitter
 
 
 	constructor: ({ @multicastAddress = 'localhost', @multicastPort }) ->
+		throw new Error 'A multicast port is required' if !@multicastPort
+
 		super
 		@server = dgram.createSocket 'udp4'
 
@@ -12,10 +14,10 @@ class Ivh2BusServer extends EventEmitter
 	create: ->
 		@server.bind @multicastPort, @multicastAddress
 
-
 		@server
 			.once 'listening', =>
 				@emit 'connected'
+
 			.once 'error', (error) =>
 				if @_events["error"]
 					@_handleServerError error

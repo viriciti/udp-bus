@@ -2,14 +2,17 @@ dgram = require 'dgram'
 
 class Ivh2BusClient
 
-	constructor: ({ @multicastPort, @multicastAddress = 'localhost', @peerId }) ->
+	constructor: ({ @multicastPort, @multicastAddress = 'localhost', @clientId }) ->
+		throw new Error 'A multicast port is required' if !@multicastPort
+		throw new Error 'A client id port is required' if !@clientId
+
 		@client = dgram.createSocket('udp4')
 
 	sendMessage: (message, cb) =>
 
 		return cb new Error 'Message format is not correct. It should be { type: ..., payload:... }' if !@_isMessageFormatCorrect message
 
-		messageWithFrom = Object.assign {}, message, { from: @peerId }
+		messageWithFrom = Object.assign {}, message, { from: @clientId }
 		bufferizedMessage = Buffer.from(JSON.stringify messageWithFrom)
 
 		@client.send bufferizedMessage, 0, bufferizedMessage.length, @multicastPort, @multicastAddress, (error, bytes) =>

@@ -1,0 +1,45 @@
+stages:
+  - dev-dependencies
+  - test
+  - build
+  - release
+
+dev-dependencies:
+  stage: dev-dependencies
+  artifacts:
+    paths:
+      - node_modules
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - node_modules
+  script:
+    - npm install --only=dev
+  only:
+    - tags
+
+test:
+  stage: test
+  script:
+    - npm run test
+  only:
+    - tags
+
+build:
+  stage: build
+  artifacts:
+    paths:
+      - build
+      - node_modules
+  script:
+    - npm run build
+  only:
+    - tags
+
+release:
+  stage: release
+  script:
+    - 
+
+  only:
+    - tags
