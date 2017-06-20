@@ -1,6 +1,6 @@
 {
   "name": "@tn-group/udp-bus",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A comunication bus that uses UDP to send/receive messages",
   "main": "build/index.js",
   "scripts": {
