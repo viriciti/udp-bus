@@ -1,7 +1,22 @@
 stages:
+  - dev-dependencies
   - test
   - build
   - release
+
+dev-dependencies:
+  stage: dev-dependencies
+  artifacts:
+    paths:
+      - node_modules
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - node_modules
+  script:
+    - npm install chai
+  only:
+    - tags
 
 test:
   stage: test
