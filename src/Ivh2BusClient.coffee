@@ -2,8 +2,7 @@ dgram = require 'dgram'
 
 class Ivh2BusClient
 
-	constructor: ({ @multicastPort, @multicastAddress = 'localhost', @clientId }) ->
-		throw new Error 'A multicast port is required' if !@multicastPort
+	constructor: ({ @multicastPort = 9999, @multicastAddress = 'localhost', @clientId }) ->
 		throw new Error 'A client id port is required' if !@clientId
 
 		@client = dgram.createSocket('udp4')
