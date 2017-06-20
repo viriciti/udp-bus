@@ -1,25 +1,11 @@
 stages:
-  - dev-dependencies
   - test
   - build
   - release
 
-dev-dependencies:
-  stage: dev-dependencies
-  artifacts:
-    paths:
-      - node_modules
-  cache:
-    key: "$CI_JOB_NAME"
-    paths:
-      - node_modules
-  script:
-    - npm install --only=dev
-  only:
-    - tags
-
 test:
   stage: test
+  image: docker.viriciti.com/vems/project-compiler
   script:
     - npm run test
   only:
@@ -27,6 +13,7 @@ test:
 
 build:
   stage: build
+  image: docker.viriciti.com/vems/project-compiler
   artifacts:
     paths:
       - build
@@ -37,9 +24,8 @@ build:
 
 release:
   stage: release
+  image: docker.viriciti.com/vems/nodejs-project-base
   script:
-    - npm install -g npm-cli-login npm-registry-client
-    - npm-cli-login -u ${NPM_USER} -p ${NPM_PASS} -e ${NPM_EMAIL}
     - npm publish
   only:
     - tags

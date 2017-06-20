@@ -25,11 +25,6 @@ describe 'ivh2 bus client', ->
 		after ->
 			busClient = null
 
-		it 'should throw an error if no multicastPort is provided', ->
-			(() ->
-				busClient = new Ivh2BusClient { clientId: 'test' }
-			).should.throw(Error)
-
 		it 'should throw an error if no clientId is provided', ->
 			(() ->
 				busClient = new Ivh2BusClient { multicastPort: 2000 }
