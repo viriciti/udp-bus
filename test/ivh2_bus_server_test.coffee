@@ -33,7 +33,7 @@ describe 'ivh2 bus server', ->
 				done()
 
 		it 'should emit the event `error` if there is an error during the connection', (done) ->
-			busServer = new Ivh2BusServer { multicastPort: 10003 }
+			busServer  = new Ivh2BusServer { multicastPort: 10003 }
 			busServer2 = new Ivh2BusServer { multicastPort: 10003 }
 			busServer.create()
 			busServer2.create()

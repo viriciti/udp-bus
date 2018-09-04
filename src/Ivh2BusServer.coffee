@@ -6,7 +6,7 @@ class Ivh2BusServer extends EventEmitter
 
 	constructor: ({ @multicastAddress = 'localhost', @multicastPort = 9999}) ->
 
-		super
+		super()
 		@server = dgram.createSocket 'udp4'
 
 

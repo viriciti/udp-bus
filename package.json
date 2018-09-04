@@ -1,17 +1,17 @@
 {
   "name": "@tn-group/udp-bus",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "A comunication bus that uses UDP to send/receive messages",
   "main": "build/index.js",
   "scripts": {
     "build": "coffee --output build --compile src",
-    "test": "mocha --compilers coffee:coffee-script/register"
+    "test": "mocha --require coffeescript/register test/* --exit"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coffee-script": "^1.12.6",
-    "mocha": "^3.4.1"
+    "chai": "^4.1.2",
+    "coffeescript": "^2.3.1",
+    "mocha": "^5.2.0"
   }
 }
