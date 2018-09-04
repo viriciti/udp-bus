@@ -1,46 +1,12 @@
 stages:
-  - dev-dependencies
-  - test
-  - build
-  - release
-
-dev-dependencies:
-  stage: dev-dependencies
-  artifacts:
-    paths:
-      - node_modules
-  cache:
-    key: "$CI_JOB_NAME"
-    paths:
-      - node_modules
-  script:
-    - npm install chai
-  only:
-    - tags
-
-test:
-  stage: test
-  image: docker.viriciti.com/vems/project-compiler
-  script:
-    - npm run test
-  only:
-    - tags
-
-build:
-  stage: build
-  image: docker.viriciti.com/vems/project-compiler
-  artifacts:
-    paths:
-      - build
-  script:
-    - npm run build
-  only:
-    - tags
+  - publish
 
 release:
-  stage: release
-  image: docker.viriciti.com/vems/nodejs-project-base
+  stage: publish
   script:
+    - npm install
+    - npm run compile
     - npm publish
   only:
-    - tags
+    - /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\+[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?$/
+
