@@ -1,10 +1,10 @@
 {
   "name": "@tn-group/udp-bus",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A comunication bus that uses UDP to send/receive messages",
   "main": "build/index.js",
   "scripts": {
-    "build": "coffee --output build --compile src",
+    "compile": "coffee --output build --compile src",
     "test": "mocha --require coffeescript/register test/* --exit"
   },
   "author": "",
