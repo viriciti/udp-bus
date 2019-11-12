@@ -1,5 +1,5 @@
 {
-  "name": "@tn-group/udp-bus",
+  "name": "@viriciti/udp-bus",
   "version": "1.1.2",
   "description": "A comunication bus that uses UDP to send/receive messages",
   "main": "build/index.js",
@@ -8,6 +8,10 @@
     "test": "mocha --require coffeescript/register test/* --exit"
   },
   "author": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/viriciti/udp-bus.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
